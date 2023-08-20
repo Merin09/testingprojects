@@ -1,0 +1,298 @@
+package test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import Pages.Ksrtcpassworderror;
+import Pages.Passworderrorpage;
+
+
+
+public class ksrtcforgotpasswordtest {
+	WebDriver driver;
+	String Baseurl="https://online.keralartc.com/oprs-web/login/show.do";
+			
+	@BeforeTest
+	
+	public void setup()
+	{
+		driver=new ChromeDriver();
+	}
+	
+		@BeforeMethod
+		public void url()
+		{
+		
+		driver.get(Baseurl);
+	}
+	@Test
+	public void testpasssword()
+	{
+		Ksrtcpassworderror ob1=new Ksrtcpassworderror(driver);
+		ob1.linkclick();
+		ob1.values("dfgh@gamil.com");
+	}
+
+	
+	
+		
+	}
+	
+
+
+package test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import Pages.Ksrtcloginpage;
+
+public class Ksrtclogintest {
+	WebDriver driver;
+	String Baseurl="https://online.keralartc.com/oprs-web/login/show.do";
+	@BeforeTest
+	public void setup()
+	{
+		driver=new ChromeDriver();
+	}
+	
+		@BeforeMethod
+		public void url()
+		{
+		
+		driver.get(Baseurl);
+	}
+		@Test
+	public void test1()
+	{
+		Ksrtcloginpage ob3=new Ksrtcloginpage(driver);
+		
+		ob3.setvalues("dfgh@1234","asdf123");
+		ob3.login();
+	}
+}
+
+		package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class Ksrtcpassworderror {
+	WebDriver driver;
+	 
+	By passwordlink=By.xpath("//*[contains(text(),'Forgot Password')]");
+	By email=By.xpath("//*[@id=\"userName\"]");
+	
+
+	public void linkclick()
+	{
+		driver.findElement(passwordlink).click();
+	}
+	public Ksrtcpassworderror(WebDriver driver)
+			 {
+		this.driver=driver;
+			 }
+	public void values(String password)
+	{
+		driver.findElement(email).sendKeys(password);
+		
+	}
+	public void forgotpassword()
+	{
+		driver.findElement(email).click();
+}
+}
+package test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import Pages.Ksrtcpassworderror;
+import Pages.Passworderrorpage;
+
+
+
+public class ksrtcforgotpasswordtest {
+	WebDriver driver;
+	String Baseurl="https://online.keralartc.com/oprs-web/login/show.do";
+			
+	@BeforeTest
+	
+	public void setup()
+	{
+		driver=new ChromeDriver();
+	}
+	
+		@BeforeMethod
+		public void url()
+		{
+		
+		driver.get(Baseurl);
+	}
+	@Test
+	public void testpasssword()
+	{
+		Ksrtcpassworderror ob1=new Ksrtcpassworderror(driver);
+		ob1.linkclick();
+		ob1.values("dfgh@gamil.com");
+	}
+
+	
+	
+		
+	}
+	
+
+
+package Pages;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class Ksrtceticketinpage {
+	WebDriver driver;
+	By ksrtcleavingfrom=By.name("fromPlaceName");
+	By ksrtcgoingto=By.name("toPlaceName");
+	By ksrtcdateofdeparture=By.name("txtJournetDate");
+	By ksrtcdateofreturn=By.name("txtReturnJourneyDate");
+	By ksrtcsearch=By.name("searchBtn");
+
+	
+	
+	
+	public  Ksrtceticketinpage(WebDriver driver)
+	{
+		this.driver=driver;
+	}
+	public void setvalues(String leaving,String going )
+	{
+		
+		driver.findElement(ksrtcleavingfrom).sendKeys(leaving);
+	
+		driver.findElement(ksrtcgoingto).sendKeys(going);
+		driver.findElement(By.xpath("//*[@id=\"txtJourneyDate\"]")).click();
+		while(true)
+		{
+		WebElement month=driver.findElement(By.xpath("*[@id=\"ui-datepicker-div\"]/table/tbody/tr[2]/td[1]/a"));
+		String month1=month.getText();
+		if(month1.equals("February2023"))
+		{
+			System.out.println(month1);
+			break;
+		}
+		else
+		{
+			driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[3]/td[3]/a")).click();
+		
+		
+		}
+		System.out.println("10/02/2023");
+		else
+		{
+		
+			System.out.println("14/02/2023");
+		}
+		}
+		
+		
+		
+		
+		
+		
+		
+	
+	public void search()
+	{
+		driver.findElement(ksrtcsearch).click();
+	}
+		}
+
+
+
+package test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import Pages.Ksrtceticketinpage;
+
+
+public class ksrtceticketingtest {
+	WebDriver driver;
+	String Baseurl="https://online.keralartc.com/oprs-web/login/show.do";
+	@BeforeTest
+	public void setup()
+	{
+		driver=new ChromeDriver();
+	}
+	
+		@BeforeMethod
+		public void url()
+		{
+		
+		driver.get(Baseurl);
+	}
+		@Test
+	public void test1()
+	{
+		Ksrtceticketinpage ob3=new Ksrtceticketinpage(driver);
+		
+		ob3.setvalues("kottayam","bangalore");
+		ob3.search();
+	}
+}
+
+
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Passworderrorpage {
+	
+WebDriver driver;
+ 
+By passwordlink=By.xpath("//*[contains(text(),'Forgotten password')]");
+By mobile=By.xpath("//*[@id=\"identify_email\"]");
+
+		
+public void linkclick()
+{
+	driver.findElement(passwordlink).click();
+}
+public Passworderrorpage(WebDriver driver)
+		 {
+	this.driver=driver;
+		 }
+public void values(String password)
+{
+	driver.findElement(mobile).sendKeys(password);
+	
+}
+public void forgotpassword()
+{
+	driver.findElement(mobile).click();
+}
+	
+}
+
+
+
